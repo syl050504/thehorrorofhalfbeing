@@ -6,7 +6,7 @@
 
 @font-face {
   font-family: 'dreamsnote';
-  src: url('fonts/dreamsnote.ttf') format('opentype');
+  src: url('fonts/DreamsNote.woff2') format('woff2');
 }
 
 body {

@@ -1,0 +1,67 @@
+@font-face {
+  font-family: 'oldnewspaper';
+  src: url('fonts/Old Newspaper Font copy.ttf') format('opentype');
+}
+
+@font-face {
+  font-family: 'bleedlight';
+  src: url('fonts/bleedlight.ttf') format('opentype');
+}
+
+@font-face {
+  font-family: 'codex';
+  src: url('fonts/codex.ttf') format('opentype');
+}
+
+@font-face {
+  font-family: 'darkdream';
+  src: url('fonts/Dark Dream copy.ttf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Kings';
+  src: url('fonts/Kings.ttf') format('opentype');
+}
+
+@font-face {
+  font-family: 'dreamsnote';
+  src: url('fonts/dreamsnote.ttf') format('opentype');
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;      /* vertical centering */
+  justify-content: center;  /* horizontal centering */
+  background-color: #ffffff;
+  color: #000000;
+  
+}
+
+.title {
+  display: flex;
+  align-items: flex-start;
+  gap: 75px;
+  transform: translateX(-6rem);
+
+}
+
+
+.line-one {
+  font-family: 'dreamsnote';
+  font-weight: thick;
+  font-size: 4.4rem;
+  letter-spacing: 0.15em;
+  transform: rotate(-90deg);
+  transform-origin: right;
+  white-space: nowrap;
+}
+
+.line-two {
+  font-family: 'codex';
+  font-size: 18rem;
+  font-weight: normal;
+  line-height: 0.9;
+  margin-top: 60px;
+}

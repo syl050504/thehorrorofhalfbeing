@@ -1,0 +1,57 @@
+@font-face {
+ font-family: 'Caslonia';
+ src: url('fonts/Caslonia.otf') format('opentype');
+}
+
+@font-face {
+ font-family: 'Almendra';
+ src: url('fonts/Almendra.ttf') format('opentype');
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  color: white;
+  height: 200vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background-color 0s, color 0s;
+}
+
+body.light {
+  background-color: white;
+  color: black;
+}
+
+.container {
+  text-align: center;
+  margin-top: 4vh;
+}
+
+h1 {
+  font-family: 'Caslonia', serif;
+  font-size: 50px;
+  margin: 50px 70px 0 70px;
+}
+
+h1.hidden-space {
+  color: transparent;
+}
+
+img.eye {
+  display: block;
+  margin-top: 30px;
+  width: 600px;
+  height: auto;
+}
+
+#dream-text {
+  opacity: 0;
+  text-align: center;
+  font-size: 40px;
+  font-family: 'Almendra', sans-serif;
+  margin-top: 400px;
+  transition: opacity 3s ease-in;
+}

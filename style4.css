@@ -1,7 +1,46 @@
-body {
-  font-family: 'Waiting for the Sunrise', cursive; 
-  font-size:30px; 
-  margin: 10px 50px; 
-  letter-spacing: 6px; 
-  font-weight: bold;
+@font-face {
+    font-family: 'Caslonia';
+    src: url('fonts/Caslonia.otf') format('opentype');
+}
+
+.text-sequence {
+    font-family: 'Caslonia';
+    font-size: 1.6rem;
+    line-height: 2.2;
+    letter-spacing: 0.05em;
+}
+
+.line {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeIn 1.5s ease forwards;
+}
+
+/* Stagger timing */
+.line:nth-child(1) {
+    animation-delay: 0.5s;
+}
+
+.line:nth-child(2) {
+    animation-delay: 2.5s;
+}
+
+.line:nth-child(3) {
+    animation-delay: 4.5s;
+}
+
+.line:nth-child(4) {
+    animation-delay: 7s;
+}
+
+.final {
+    font-weight: 500;
+    letter-spacing: 0.08em;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

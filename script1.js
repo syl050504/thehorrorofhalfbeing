@@ -13,7 +13,6 @@ let angle = 0;
 let animationId;
 const radius = 320;
 
-/* Place icons around circle */
 function placeIcons() {
   const total = ferrisIcons.length;
 
@@ -24,7 +23,6 @@ function placeIcons() {
   });
 }
 
-/* Animate */
 function animate() {
   angle += 0.2;
   placeIcons();
@@ -38,23 +36,18 @@ gridIcons.forEach(icon => {
     sidebar.classList.add('open');
 
     sidebarTitle.textContent = icon.dataset.title || '';
-
-    // main text
     sidebarText.textContent = icon.dataset.text || '';
 
-    // hover text (for now, duplicate or replace later)
     sidebarHover.textContent = icon.dataset.hover || icon.dataset.text || '';
 
     animate();
   });
 });
+/*close sidebar eevent*/
 
-
-/* Close sidebar */
 closeBtn.addEventListener('click', () => {
   sidebar.classList.remove('open');
   circleContainer.style.display = 'none';
-  // remove the inline display override so the stylesheet's layout (flex) applies
   grid.style.display = '';
 
   cancelAnimationFrame(animationId);

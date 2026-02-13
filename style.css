@@ -3,7 +3,6 @@
   src: url('fonts/codex.ttf') format('opentype');
 }
 
-
 @font-face {
   font-family: 'dreamsnote';
   src: url('fonts/DreamsNote.woff2') format('woff2');
@@ -13,23 +12,18 @@ body {
   margin: 0;
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  /* vertical centering */
-  justify-content: center;
-  /* horizontal centering */
-  background-color: #ffffff;
-  color: #000000;
-
+  justify-content: center;   /* horizontal */
+  align-items: center;       /* vertical */
+  background-color: #13191f;
+  color: #697d72;
 }
 
 .title {
   display: flex;
   align-items: flex-start;
-  gap: 75px;
-  transform: translateX(-6rem);
-
+  gap: 70px;
+  transform: translateX(-13rem);  
 }
-
 
 .line-one {
   font-family: 'dreamsnote';
@@ -47,4 +41,45 @@ body {
   font-weight: normal;
   line-height: 0.9;
   margin-top: 60px;
+}
+
+a {
+  text-decoration: none;
+  color: #697d72;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.link {
+  position: relative;
+  text-decoration: none;
+  color: #697d72;
+  display: inline-block;
+  transition: color 0.6s ease, text-shadow 0.6s ease;
+}
+
+.link:hover {
+  color: #9fbfb0;
+  text-shadow: 0 0 13px rgba(171, 203, 188, 0.4);
+}
+
+.hover-text {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, 20px); 
+
+  font-family: 'dreamsnote';
+  font-size: 1.8rem;
+  font-weight: normal;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+
+  opacity: 0;            /* hidden by default */
+
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateX(-8.9rem);
+}
+
+.link:hover .hover-text {
+  opacity: 1;             /* ← make visible on hover */
 }

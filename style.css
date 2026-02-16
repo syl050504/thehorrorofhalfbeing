@@ -14,8 +14,7 @@ body {
   display: flex;
   justify-content: center;   /* horizontal */
   align-items: center;       /* vertical */
-  background-color: #13191f;
-  color: #697d72;
+  background-color: #0f1519;
 }
 
 .title {
@@ -23,6 +22,8 @@ body {
   align-items: flex-start;
   gap: 70px;
   transform: translateX(-13rem);  
+  color: #697d72;
+
 }
 
 .line-one {
@@ -58,7 +59,7 @@ a {
 }
 
 .link:hover {
-  color: #9fbfb0;
+  color: #aac7ba;
   text-shadow: 0 0 13px rgba(171, 203, 188, 0.4);
 }
 

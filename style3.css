@@ -10,13 +10,13 @@
 
 body {
   margin: 0;
-  background: #1a1818;
+  background: #1e1a17;
   color: white;
   font-family: sans-serif;
 }
 
 #circleContainer {
-  position: absolute;
+  position: fixed;
   top: 40%;
   left: 46%;
   transform: translate(-50%, -50%);
@@ -91,6 +91,7 @@ body {
   font-weight: lighter;
 }
 
+/* Two-column layout inside sidebar */
 #sidebarColumns {
   display: flex;
   gap: 44px;
@@ -102,6 +103,11 @@ body {
 #sidebarColumns .col {
   flex: 1 1 50%;
   min-width: 0;
+}
+
+/* ensure columns are a positioned container for overlays */
+#sidebarColumns .col {
+  position: relative;
 }
 
 @media (max-width: 700px) {
@@ -127,4 +133,55 @@ body {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+}
+
+/* --- Hover source labels (minimal addition) --- */
+
+.text-block {
+  position: relative;
+}
+
+.source-label {
+  position: absolute;
+  top: -18px;
+  left: 0;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-family: "Caslonia";
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+/* show only when hovering the text area */
+#colLeft:hover .source-label,
+#colRight:hover .source-label {
+  opacity: 1;
+}
+
+/* Title-replacement: an absolutely-positioned element placed inside each column
+   that becomes visible while hovering; the original content is kept but hidden
+   via visibility so layout doesn't reflow. */
+.title-replacement {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-top: 6px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+.title-replacement .source-label {
+  position: static;
+  opacity: 1;
+  font-size: 0.95rem;
+}
+.col.replace-active .content-inner {
+  visibility: hidden; /* keep space but hide content */
+}
+.col.replace-active .title-replacement {
+  opacity: 1;
 }

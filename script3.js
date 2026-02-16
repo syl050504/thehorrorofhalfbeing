@@ -7,10 +7,6 @@ const closeBtnLeft = document.getElementById('closeBtnLeft');
 const sidebarTitle = document.getElementById('sidebarTitle');
 const sidebarText = document.getElementById('sidebarText');
 const sidebarHover = document.getElementById('sidebarHover');
-const sidebarTitleLeft = document.getElementById('sidebarTitleLeft');
-const sidebarTextLeft = document.getElementById('sidebarTextLeft');
-const sidebarHoverLeft = document.getElementById('sidebarHoverLeft');
-const overlay = document.getElementById('overlay');
 
 let angle = 0;
 let animationId = null;
@@ -89,10 +85,24 @@ ferrisIcons.forEach(icon => {
         if (sidebarTitle) sidebarTitle.textContent = title;
         const leftEl = document.getElementById('colLeft');
         const rightEl = document.getElementById('colRight');
-        if (leftEl) leftEl.innerHTML = left ? `<p>${left}</p>` : '';
-        if (rightEl) rightEl.innerHTML = right ? `<p>${right}</p>` : '';
+        if (leftEl) leftEl.innerHTML = left ? `
+        
+<div class="text-block">
+  <span class="source-label">Frankenstein</span>
+  <p>${left}</p>
+</div>
+` : '';
+
+if (rightEl) rightEl.innerHTML = right ? `
+<div class="text-block">
+  <span class="source-label">The Circular Ruins</span>
+  <p>${right}</p>
+</div>
+` : '';
+
 
         // show overlay and sidebar
+        const overlay = document.getElementById('overlay');
         if (overlay) overlay.classList.add('visible');
         if (sidebar) sidebar.classList.add('open');
     });
@@ -100,21 +110,21 @@ ferrisIcons.forEach(icon => {
 
 function closeBothSidebars() {
     if (sidebar) sidebar.classList.remove('open');
+    const overlay = document.getElementById('overlay');
     if (overlay) overlay.classList.remove('visible');
     if (!animationId) requestAnimationFrame(animate);
 }
-
-// Close when close buttons are present
-if (closeBtn) closeBtn.addEventListener('click', closeBothSidebars);
-if (closeBtnLeft) closeBtnLeft.addEventListener('click', closeBothSidebars);
+ 
 
 // Close when overlay (background) is clicked
+const overlay = document.getElementById('overlay');
 if (overlay) overlay.addEventListener('click', closeBothSidebars);
 
 // When opening the sidebar, show the overlay as well
 // We want to keep the wheel visible behind overlay (overlay dims it)
 const openSidebar = () => {
     if (sidebar) sidebar.classList.add('open');
+    const overlay = document.getElementById('overlay');
     if (overlay) overlay.classList.add('visible');
 };
 

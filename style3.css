@@ -91,7 +91,6 @@ body {
   font-weight: lighter;
 }
 
-/* Two-column layout inside sidebar */
 #sidebarColumns {
   display: flex;
   gap: 44px;

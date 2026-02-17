@@ -4,8 +4,8 @@
 }
 
 body {
-    background-color: #697d72;
-    color: #dbdbdb;
+    background-color: #000000;
+    color: #373737;
 }
 
 .text-sequence {
@@ -37,7 +37,7 @@ body {
 }
 
 .line:nth-child(4) {
-    animation-delay: 5s;
+    animation-delay: 6s;
 }
 
 .final {

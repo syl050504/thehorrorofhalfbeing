@@ -87,7 +87,6 @@ ferrisIcons.forEach(icon => {
             leftEl.innerHTML = left ? `
                 <div class="original-content">
                     <div class="text-block">
-                        <span class="source-label">Frankenstein</span>
                         <p>${left}</p>
                     </div>
                 </div>
@@ -99,7 +98,6 @@ ferrisIcons.forEach(icon => {
             rightEl.innerHTML = right ? `
                 <div class="original-content">
                     <div class="text-block">
-                        <span class="source-label">The Circular Ruins</span>
                         <p>${right}</p>
                     </div>
                 </div>

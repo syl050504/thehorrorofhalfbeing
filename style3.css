@@ -69,7 +69,7 @@ color: white;
   size: 30px;
   text-align: center;
   margin-top: 30px;
-  margin-bottom: 7px;
+  margin-bottom: 0px;
 }
 
 #sidebar.open {
@@ -99,7 +99,6 @@ color: white;
 #sidebarColumns {
   display: flex;
   gap: 44px;
-  margin-top: 16px;
   align-items: flex-start;
   padding: 30px;
 }
@@ -180,7 +179,6 @@ color: white;
 .col.show-title .original-content {
   opacity: 0;
 }
-
 .col.show-title .hover-title {
   opacity: 1;
 }
@@ -223,6 +221,11 @@ color: white;
   font-size: 2.4rem;
   opacity: 0.4;
  }
+
+
+
+
+
 
 /* ===== RESPONSIVE MEDIA QUERIES ===== */
 

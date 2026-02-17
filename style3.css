@@ -8,10 +8,6 @@
   src: url('fonts/Almendra.ttf') format('opentype');
 }
 
-@font-face {
-  font-family: 'DreamsNote';
-  src: url('fonts/DreamsNote.ttf') format('opentype')
-}
 
 body {
 background: rgb(26, 23, 22);
@@ -80,7 +76,8 @@ color: white;
 
 #colLeft {
   font-family: "Almendra";
-  font-size: 1.7vw;
+  font-size: 1.4vw;
+  padding-top: 10px;
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -88,9 +85,9 @@ color: white;
 
 #colRight {
   font-family: "Caslonia";
-  font-size: 2vw;
-  line-height: 2.5vw;
-  font-weight: lighter;
+  font-size: 1.8vw;
+  line-height: 2vw;
+  font-weight: -20;
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -133,7 +130,7 @@ color: white;
 
 .source-label {
   position: absolute;
-  top: -18px;
+  padding-top: 18px;
   left: 0;
   font-size: 0.9rem;
   letter-spacing: 0.08em;

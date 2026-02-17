@@ -3,15 +3,22 @@
     src: url('fonts/Caslonia.otf') format('opentype');
 }
 
+
+@font-face {
+  font-family: 'Almendra';
+  src: url('fonts/Almendra.ttf') format('opentype');
+}
+
+
 body {
-    background-color: #000000;
-    color: #373737;
+    background-color: #161a1b;
+    color: #697d72;
 }
 
 .text-sequence {
-    font-family: 'Caslonia';
+    font-family: 'Almendra';
     font-size: 2.0rem;
-    letter-spacing: 0.007rem;
+    letter-spacing: 0.15rem;
     margin-top: 15%;
     justify-content: center;
     text-align: center;

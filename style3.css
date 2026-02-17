@@ -180,13 +180,18 @@ color: white;
   opacity: 1;
 }
 
-#home {
+#back {
+  color: white;
+  opacity: 1;
+}
+
+#p2 {
   position: fixed;
-  top: 55%;
+  top: 50%;
   left: 90%;
   transform: translate(-50%, -50%);
   z-index: 999;
-  color: rgb(255, 255, 255);
+  color: rgb(196, 194, 194);
   text-decoration: none;
   font-family: "Caslonia";
   font-size: 2.4rem;
@@ -195,10 +200,9 @@ color: white;
   animation-delay: 12s;
 }
 
-
 @keyframes fadeIn {
   to {
-    opacity: 1; /* Fade in to visible */
+    opacity: 0.5; /* Fade in to visible */
   }
 }
 

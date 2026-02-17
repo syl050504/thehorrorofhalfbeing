@@ -1,7 +1,6 @@
 const ferrisIcons = document.querySelectorAll('#circleContainer .icon');
 const circleContainer = document.getElementById('circleContainer');
 const sidebar = document.getElementById('sidebar');
-const closeBtn = document.getElementById('closeBtn');
 const sidebarTitle = document.getElementById('sidebarTitle');
 
 let angle = 0;
@@ -25,7 +24,7 @@ function animate() {
 
 document.addEventListener('DOMContentLoaded', () => {
     placeIcons();
-    requestAnimationFrame(animate);
+    animationId = requestAnimationFrame(animate);
 });
 
 function splitTextInHalf(text) {
@@ -45,6 +44,16 @@ function splitTextInHalf(text) {
 }
 
 ferrisIcons.forEach(icon => {
+    icon.addEventListener('mouseenter', () => {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+    });
+
+    icon.addEventListener('mouseleave', () => {
+        cancelAnimationFrame(animationId);
+        animationId = requestAnimationFrame(animate);
+    });
+
     icon.addEventListener('click', () => {
         const title = icon.dataset.title || icon.getAttribute('data-title') || icon.getAttribute('title') || '';
         const full = icon.dataset.text || icon.getAttribute('data-text') || '';
@@ -73,11 +82,12 @@ ferrisIcons.forEach(icon => {
         if (sidebarTitle) sidebarTitle.textContent = title;
         const leftEl = document.getElementById('colLeft');
         const rightEl = document.getElementById('colRight');
-        
+
         if (leftEl) {
             leftEl.innerHTML = left ? `
                 <div class="original-content">
                     <div class="text-block">
+                        <span class="source-label">Frankenstein</span>
                         <p>${left}</p>
                     </div>
                 </div>
@@ -89,6 +99,7 @@ ferrisIcons.forEach(icon => {
             rightEl.innerHTML = right ? `
                 <div class="original-content">
                     <div class="text-block">
+                        <span class="source-label">The Circular Ruins</span>
                         <p>${right}</p>
                     </div>
                 </div>
@@ -106,7 +117,8 @@ function closeBothSidebars() {
     if (sidebar) sidebar.classList.remove('open');
     const overlay = document.getElementById('overlay');
     if (overlay) overlay.classList.remove('visible');
-    if (!animationId) requestAnimationFrame(animate);
+    cancelAnimationFrame(animationId);
+    animationId = requestAnimationFrame(animate);
 }
 
 const overlay = document.getElementById('overlay');
@@ -117,21 +129,21 @@ const leftEl = document.getElementById('colLeft');
 const rightEl = document.getElementById('colRight');
 
 if (leftEl) {
-    leftEl.addEventListener('mouseenter', function() {
+    leftEl.addEventListener('mouseenter', function () {
         this.classList.add('show-title');
     });
 
-    leftEl.addEventListener('mouseleave', function() {
+    leftEl.addEventListener('mouseleave', function () {
         this.classList.remove('show-title');
     });
 }
 
 if (rightEl) {
-    rightEl.addEventListener('mouseenter', function() {
+    rightEl.addEventListener('mouseenter', function () {
         this.classList.add('show-title');
     });
 
-    rightEl.addEventListener('mouseleave', function() {
+    rightEl.addEventListener('mouseleave', function () {
         this.classList.remove('show-title');
     });
 }

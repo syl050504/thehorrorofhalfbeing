@@ -8,11 +8,14 @@
   src: url('fonts/Almendra.ttf') format('opentype');
 }
 
+@font-face {
+  font-family: 'DreamsNote';
+  src: url('fonts/DreamsNote.ttf') format('opentype')
+}
+
 body {
-  margin: 0;
-  background: #1e1a17;
-  color: white;
-  font-family: sans-serif;
+background: rgb(26, 23, 22);
+color: white;
 }
 
 #circleContainer {
@@ -181,6 +184,45 @@ body {
 .col.show-title .hover-title {
   opacity: 1;
 }
+
+#home {
+  position: fixed;
+  top: 55%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-family: "Caslonia";
+  font-size: 2.4rem;
+  opacity: 0;
+  animation: fadeIn ease 3s forwards;
+  animation-delay: 12s;
+}
+
+
+@keyframes fadeIn {
+  to {
+    opacity: 1; /* Fade in to visible */
+  }
+}
+
+#home:hover {
+    text-shadow: 0 0 1px white;
+}
+
+#p1 {
+  position: fixed;
+  top: 50%;
+  left: 9.2%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  color: white;
+  text-decoration: none;
+  font-family: "Caslonia";
+  font-size: 2.4rem;
+  opacity: 0.4;
+ }
 
 /* ===== RESPONSIVE MEDIA QUERIES ===== */
 

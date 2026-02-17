@@ -1,12 +1,8 @@
 const ferrisIcons = document.querySelectorAll('#circleContainer .icon');
 const circleContainer = document.getElementById('circleContainer');
 const sidebar = document.getElementById('sidebar');
-const sidebarLeft = document.getElementById('sidebar-left');
 const closeBtn = document.getElementById('closeBtn');
-const closeBtnLeft = document.getElementById('closeBtnLeft');
 const sidebarTitle = document.getElementById('sidebarTitle');
-const sidebarText = document.getElementById('sidebarText');
-const sidebarHover = document.getElementById('sidebarHover');
 
 let angle = 0;
 let animationId = null;
@@ -32,17 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(animate);
 });
 
-// Helper: split a block of text into two roughly equal parts (by words)
 function splitTextInHalf(text) {
     if (!text) return ["", ""];
-    // prefer explicit '|' separator
     if (text.indexOf('|') !== -1) {
         const parts = text.split('|');
         return [parts[0].trim(), parts.slice(1).join('|').trim()];
     }
     const words = text.trim().split(/\s+/);
     if (words.length <= 8) {
-        // short text, put all in left column
         return [text.trim(), ''];
     }
     const half = Math.ceil(words.length / 2);
@@ -51,15 +44,11 @@ function splitTextInHalf(text) {
     return [left, right];
 }
 
-// When an icon is clicked, populate the sidebar title and two columns
 ferrisIcons.forEach(icon => {
     icon.addEventListener('click', () => {
-        // icons may have title in a title attribute or data-title; accept both
         const title = icon.dataset.title || icon.getAttribute('data-title') || icon.getAttribute('title') || '';
         const full = icon.dataset.text || icon.getAttribute('data-text') || '';
-        const hover = icon.dataset.hover || icon.getAttribute('data-hover') || '';
 
-        // first, check for a matching sidebar-item in the #sidebarData area
         let left = '';
         let right = '';
         const sidebarData = document.getElementById('sidebarData');
@@ -73,7 +62,6 @@ ferrisIcons.forEach(icon => {
             }
         }
 
-        // fallback to data attributes or splitting the data-text
         if (!left && !right) {
             left = icon.dataset.left || '';
             right = icon.dataset.right || '';
@@ -85,23 +73,29 @@ ferrisIcons.forEach(icon => {
         if (sidebarTitle) sidebarTitle.textContent = title;
         const leftEl = document.getElementById('colLeft');
         const rightEl = document.getElementById('colRight');
-        if (leftEl) leftEl.innerHTML = left ? `
         
-<div class="text-block">
-  <span class="source-label">Frankenstein</span>
-  <p>${left}</p>
-</div>
-` : '';
+        if (leftEl) {
+            leftEl.innerHTML = left ? `
+                <div class="original-content">
+                    <div class="text-block">
+                        <p>${left}</p>
+                    </div>
+                </div>
+                <div class="hover-title">Frankenstein</div>
+            ` : '';
+        }
 
-if (rightEl) rightEl.innerHTML = right ? `
-<div class="text-block">
-  <span class="source-label">The Circular Ruins</span>
-  <p>${right}</p>
-</div>
-` : '';
+        if (rightEl) {
+            rightEl.innerHTML = right ? `
+                <div class="original-content">
+                    <div class="text-block">
+                        <p>${right}</p>
+                    </div>
+                </div>
+                <div class="hover-title">The Circular Ruins</div>
+            ` : '';
+        }
 
-
-        // show overlay and sidebar
         const overlay = document.getElementById('overlay');
         if (overlay) overlay.classList.add('visible');
         if (sidebar) sidebar.classList.add('open');
@@ -114,18 +108,30 @@ function closeBothSidebars() {
     if (overlay) overlay.classList.remove('visible');
     if (!animationId) requestAnimationFrame(animate);
 }
- 
 
-// Close when overlay (background) is clicked
 const overlay = document.getElementById('overlay');
 if (overlay) overlay.addEventListener('click', closeBothSidebars);
 
-// When opening the sidebar, show the overlay as well
-// We want to keep the wheel visible behind overlay (overlay dims it)
-const openSidebar = () => {
-    if (sidebar) sidebar.classList.add('open');
-    const overlay = document.getElementById('overlay');
-    if (overlay) overlay.classList.add('visible');
-};
+// Hover functionality for columns
+const leftEl = document.getElementById('colLeft');
+const rightEl = document.getElementById('colRight');
 
-// Note: sidebar is opened in the click handler above (which also populates columns).
+if (leftEl) {
+    leftEl.addEventListener('mouseenter', function() {
+        this.classList.add('show-title');
+    });
+
+    leftEl.addEventListener('mouseleave', function() {
+        this.classList.remove('show-title');
+    });
+}
+
+if (rightEl) {
+    rightEl.addEventListener('mouseenter', function() {
+        this.classList.add('show-title');
+    });
+
+    rightEl.addEventListener('mouseleave', function() {
+        this.classList.remove('show-title');
+    });
+}

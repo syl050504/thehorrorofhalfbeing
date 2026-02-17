@@ -31,20 +31,18 @@ body {
   left: 50%;
   transform-origin: center;
   align-items: center;
+  cursor: pointer;
 }
 
 #circleContainer .icon img {
   width: 150px;
 }
 
-/* Sidebar is centered and fades in using opacity */
 #sidebar {
   position: fixed;
   top: 50%;
   left: 50%;
-  /* horizontally center */
   transform: translate(-50%, -50%);
-  /* center both axes */
   width: 70%;
   height: 80%;
   background: rgba(255, 255, 255, 0.13);
@@ -57,10 +55,8 @@ body {
   z-index: 250;
   box-shadow: 0 0 18px rgba(0, 0, 0, 0.12);
   opacity: 0;
-  /* start invisible */
   visibility: hidden;
   pointer-events: none;
-  /* avoid interaction while hidden */
 }
 
 #sidebarTitle {
@@ -73,7 +69,6 @@ body {
   margin-bottom: 7px;
 }
 
-/* when open, fade into view */
 #sidebar.open {
   opacity: 1;
   visibility: visible;
@@ -83,15 +78,21 @@ body {
 #colLeft {
   font-family: "Almendra";
   font-size: 1.7vw;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
 #colRight {
   font-family: "Caslonia";
   font-size: 2vw;
+  line-height: 2.5vw;
   font-weight: lighter;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Two-column layout inside sidebar */
 #sidebarColumns {
   display: flex;
   gap: 44px;
@@ -103,20 +104,9 @@ body {
 #sidebarColumns .col {
   flex: 1 1 50%;
   min-width: 0;
-}
-
-/* ensure columns are a positioned container for overlays */
-#sidebarColumns .col {
   position: relative;
 }
 
-@media (max-width: 700px) {
-  #sidebarColumns {
-    flex-direction: column;
-  }
-}
-
-/* hide the editable sidebar data from the UI; it's placed in the HTML for easy editing */
 #sidebarData {
   display: none;
 }
@@ -135,8 +125,6 @@ body {
   pointer-events: auto;
 }
 
-/* --- Hover source labels (minimal addition) --- */
-
 .text-block {
   position: relative;
 }
@@ -154,34 +142,195 @@ body {
   pointer-events: none;
 }
 
-/* show only when hovering the text area */
 #colLeft:hover .source-label,
 #colRight:hover .source-label {
   opacity: 1;
 }
 
-/* Title-replacement: an absolutely-positioned element placed inside each column
-   that becomes visible while hovering; the original content is kept but hidden
-   via visibility so layout doesn't reflow. */
-.title-replacement {
+.original-content {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.hover-title {
   position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding-top: 6px;
-  pointer-events: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-size: 3vw;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   opacity: 0;
-  transition: opacity 160ms ease;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  padding-top: 20px;
 }
-.title-replacement .source-label {
-  position: static;
+
+#colLeft .hover-title {
+  font-family: "Almendra";
+}
+#colRight .hover-title {
+  font-family: "Caslonia";
+}
+.col.show-title .original-content {
+  opacity: 0;
+}
+
+.col.show-title .hover-title {
   opacity: 1;
-  font-size: 0.95rem;
 }
-.col.replace-active .content-inner {
-  visibility: hidden; /* keep space but hide content */
+
+/* ===== RESPONSIVE MEDIA QUERIES ===== */
+
+/* Tablets and smaller laptops (1024px and below) */
+@media (max-width: 1024px) {
+  #circleContainer .icon img {
+    width: 120px;
+  }
+  
+  #sidebar {
+    width: 80%;
+    height: 85%;
+    padding: 20px;
+  }
+  
+  #sidebarTitle {
+    font-size: 10vw;
+    margin-top: 20px;
+  }
+  
+  #colLeft {
+    font-size: 2.2vw;
+  }
+  
+  #colRight {
+    font-size: 2.5vw;
+    line-height: 3vw;
+  }
+  
+  .hover-title {
+    font-size: 4vw;
+  }
+  
+  #sidebarColumns {
+    gap: 30px;
+    padding: 20px;
+  }
 }
-.col.replace-active .title-replacement {
-  opacity: 1;
+
+/* Mobile landscape and small tablets (768px and below) */
+@media (max-width: 768px) {
+  #circleContainer .icon img {
+    width: 100px;
+  }
+  
+  #sidebar {
+    width: 90%;
+    height: 90%;
+    padding: 16px;
+  }
+  
+  #sidebarTitle {
+    font-size: 12vw;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+  
+  #colLeft {
+    font-size: 3vw;
+  }
+  
+  #colRight {
+    font-size: 3.5vw;
+    line-height: 4vw;
+  }
+  
+  .hover-title {
+    font-size: 5vw;
+    padding-top: 10px;
+  }
+  
+  #sidebarColumns {
+    flex-direction: column;
+    gap: 25px;
+    padding: 15px;
+  }
+  
+  .source-label {
+    font-size: 0.8rem;
+  }
+}
+
+/* Mobile portrait (480px and below) */
+@media (max-width: 480px) {
+  #circleContainer {
+    width: 90%;
+    height: 90%;
+  }
+  
+  #circleContainer .icon img {
+    width: 70px;
+  }
+  
+  #sidebar {
+    width: 95%;
+    height: 95%;
+    padding: 12px;
+  }
+  
+  #sidebarTitle {
+    font-size: 14vw;
+    margin-top: 10px;
+    margin-bottom: 8px;
+  }
+  
+  #colLeft {
+    font-size: 4vw;
+  }
+  
+  #colRight {
+    font-size: 4.5vw;
+    line-height: 5.5vw;
+  }
+  
+  .hover-title {
+    font-size: 6vw;
+    padding-top: 5px;
+  }
+  
+  #sidebarColumns {
+    gap: 20px;
+    padding: 10px;
+    margin-top: 10px;
+  }
+  
+  .source-label {
+    font-size: 0.7rem;
+    top: -15px;
+  }
+}
+
+/* Very small screens (360px and below) */
+@media (max-width: 360px) {
+  #circleContainer .icon img {
+    width: 60px;
+  }
+  
+  #sidebarTitle {
+    font-size: 16vw;
+  }
+  
+  #colLeft {
+    font-size: 4.5vw;
+  }
+  
+  #colRight {
+    font-size: 5vw;
+    line-height: 6vw;
+  }
+  
+  .hover-title {
+    font-size: 7vw;
+  }
 }

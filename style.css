@@ -1,181 +1,90 @@
 @font-face {
-  font-family: 'Caslonia';
-  src: url('fonts/Caslonia.otf') format('opentype');
+  font-family: 'codex';
+  src: url('fonts/codex.ttf') format('opentype');
 }
 
 @font-face {
-  font-family: 'Almendra';
-  src: url('fonts/Almendra.ttf') format('opentype');
+  font-family: 'dreamsnote';
+  src: url('fonts/DreamsNote.woff2') format('woff2');
 }
 
 body {
   margin: 0;
-  background: #1e1a17;
-  color: white;
-  font-family: sans-serif;
-}
-
-#circleContainer {
-  position: fixed;
-  top: 40%;
-  left: 46%;
-  transform: translate(-50%, -50%);
-  width: 70%;
-  height: 70%;
-  margin: 0;
-}
-
-#circleContainer .icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform-origin: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-#circleContainer .icon img {
-  width: 150px;
-}
-
-#sidebar {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70%;
-  height: 80%;
-  background: rgba(255, 255, 255, 0.13);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(4.1px);
-  -webkit-backdrop-filter: blur(4.1px);
-  padding: 24px;
-  transition: opacity 0.6s ease, visibility 0.6s ease;
-  z-index: 250;
-  box-shadow: 0 0 18px rgba(0, 0, 0, 0.12);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-#sidebarTitle {
-  font-family: "Caslonia";
-  font-size: 8vw;
-  font-weight: normal;
-  size: 30px;
-  text-align: center;
-  margin-top: 30px;
-  margin-bottom: 7px;
-}
-
-#sidebar.open {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-#colLeft {
-  font-family: "Almendra";
-  font-size: 1.7vw;
-  cursor: pointer;
-  position: relative;
-}
-
-#colRight {
-  font-family: "Caslonia";
-  font-size: 2vw;
-  line-height: 2.5vw;
-  font-weight: lighter;
-  cursor: pointer;
-  position: relative;
-}
-
-#sidebarColumns {
+  min-height: 100vh;
   display: flex;
-  gap: 44px;
-  margin-top: 16px;
+  justify-content: center;
+  /* horizontal */
+  align-items: center;
+  /* vertical */
+  background-color: #0f1519;
+}
+
+.title {
+  display: flex;
   align-items: flex-start;
-  padding: 30px;
+  gap: 70px;
+  transform: translateX(-13rem);
+  color: #697d72;
+
 }
 
-#sidebarColumns .col {
-  flex: 1 1 50%;
-  min-width: 0;
+.line-one {
+  font-family: 'dreamsnote';
+  font-weight: thick;
+  font-size: 4.4rem;
+  letter-spacing: 0.15em;
+  transform: rotate(-90deg);
+  transform-origin: right;
+  white-space: nowrap;
+}
+
+.line-two {
+  font-family: 'codex';
+  font-size: 18rem;
+  font-weight: normal;
+  line-height: 0.9;
+  margin-top: 60px;
+}
+
+a {
+  text-decoration: none;
+  color: #697d72;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.link {
   position: relative;
+  text-decoration: none;
+  color: #697d72;
+  display: inline-block;
+  transition: color 0.6s ease, text-shadow 0.6s ease;
 }
 
-@media (max-width: 700px) {
-  #sidebarColumns {
-    flex-direction: column;
-  }
+.link:hover {
+  color: #aac7ba;
+  text-shadow: 0 0 13px rgba(171, 203, 188, 0.4);
 }
 
-#sidebarData {
-  display: none;
-}
-
-#overlay {
-  position: fixed;
-  inset: 0;
-  opacity: 0;
-  z-index: 240;
-  pointer-events: none;
-}
-
-#overlay.visible {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-.text-block {
-  position: relative;
-}
-
-.source-label {
+.hover-text {
   position: absolute;
-  top: -18px;
-  left: 0;
-  font-size: 0.9rem;
-  letter-spacing: 0.08em;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  font-family: "Caslonia";
-  text-transform: uppercase;
-  pointer-events: none;
-}
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, 20px);
 
-#colLeft:hover .source-label,
-#colRight:hover .source-label {
-  opacity: 1;
-}
-
-/* Simple fade transition without movement */
-.original-content {
-  opacity: 1;
-  transition: opacity 0.25s ease;
-}
-
-.hover-title {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  font-family: "Caslonia";
-  font-size: 3vw;
-  font-weight: 700;
-  text-transform: uppercase;
+  font-family: 'dreamsnote';
+  font-size: 1.8rem;
+  font-weight: normal;
   letter-spacing: 0.1em;
+  white-space: nowrap;
+
   opacity: 0;
-  transition: opacity 0.25s ease;
-  pointer-events: none;
+  /* hidden by default */
+
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateX(-8.9rem);
 }
 
-.col.show-title .original-content {
-  opacity: 0;
-}
-
-.col.show-title .hover-title {
+.link:hover .hover-text {
   opacity: 1;
+  /* ← make visible on hover */
 }
